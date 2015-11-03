@@ -14,7 +14,7 @@ else {
 	if ( empty ($_POST ["nouveauMdp"]) == true)  $nouveauMdp = "";  else   $nouveauMdp = $_POST ["nouveauMdp"];
 	if ( empty ($_POST ["confirmationMdp"]) == true)  $confirmationMdp = "";  else   $confirmationMdp = $_POST ["confirmationMdp"];
 	
-	if ($nouveauMdp == '' || $confirmationMdp = "") {
+	if ($nouveauMdp == '' || $confirmationMdp == "") {
 		// si les données sont incomplètes, réaffichage de la vue avec un message explicatif
 		$msgFooter = 'Données incomplètes !';
 		$themeFooter = $themeProbleme;
@@ -22,9 +22,6 @@ else {
 	}
 	else 
 	{
-		// connexion du serveur web à la base MySQL
-		include_once ('modele/DAO.class.php');
-		$dao = new DAO();
 		
 		// test des deux mot de passes
 		// si le $nouvMdp est égale à $confirmationMdp, sinon message d'erreur
@@ -37,6 +34,9 @@ else {
 		}
 		else 
 		{
+			// connexion du serveur web à la base MySQL
+			include_once ('modele/DAO.class.php');
+			$dao = new DAO();
 			// enregistre le nouveau mot de passe de l'utilisateur dans la bdd après l'avoir codé en MD5
 			$dao->modifierMdpUser ($nom, $nouveauMdp);
 	
@@ -55,7 +55,8 @@ else {
 						$msgFooter = "Enregistrement effectué.<br>Vous allez recevoir un mail de confirmation.";
 						include_once ('vues/VueChangerDeMdp.php');
 					}
+					unset($dao);		// fermeture de la connexion à MySQL
 		}
-		unset($dao);		// fermeture de la connexion à MySQL
+		
 	}
 }
