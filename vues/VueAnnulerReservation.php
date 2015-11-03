@@ -15,15 +15,15 @@
 				<a href="index.php?action=Deconnecter">Reconnexion</a>
 			</div>
 			<div data-role="content">
-				<h4 style="text-align: center; margin-top: 10px; margin-bottom: 10px;">Annuler une Réservation</h4>
-				<form name="form1" id="form1" action="index.php?action=DemanderMdp" method="post">
+				<h4 style="text-align: center; margin-top: 10px; margin-bottom: 10px;">Annuler une réservation</h4>
+				<form name="form1" id="form1" action="index.php?action=AnnulerReservation" method="post">
 					<div data-role="fieldcontain" class="ui-hide-label">
-						<label for="nom">Utilisateur :</label>
-						<input type="text" name="nom" id="nom" placeholder="Entrez votre nom" value="<?php echo $nom; ?>" >
+						<label for="num">Utilisateur :</label>
+						<input type="text" name="num" id="num" placeholder="Entrez le numéro de réservation" value="<?php ?>" >
 					</div>
 
 					<div data-role="fieldcontain">
-						<input type="submit" name="demanderMdp" id="demanderMdp" value="M'envoyer un nouveau mot de passe">
+						<input type="submit" name="annulerReservation" id="annulerReservation" value="Annuler la réservation">
 					</div>
 				</form>
 				
