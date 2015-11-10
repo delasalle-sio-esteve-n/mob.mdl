@@ -14,7 +14,7 @@
 				<h4>M2L-GRR</h4>
 			</div>
 			
-			<form name="form1" id="form1" action="index.php?action=CreerUtilisateur" method="post">
+			<form name="form1" id="form1" action="index.php?action=/controleur/CreerUtilisateur" method="post">
 			<label for="nom">Utilisateur :</label>
 			<input type="text" name="nom" id="nom" data-mini="true" placeholder="Entrez votre nom d'utilisateur" value="<?php echo $nom; ?>" >
 			<label for="mdp">Mot de passe :</label>
