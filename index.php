@@ -74,7 +74,7 @@ switch($action){
 	}
 	case 'CreerUtilisateur': {
 		//include_once ('controleurs/CtrlCreerUtilisateur.php'); break;
-		include_once ('controleurs/CtrlCreerutilisateur.php'); break;	// ligne provisoire
+		include_once ('controleurs/CtrlCreerUtilisateur.php'); break;	// ligne provisoire
 	}
 	case 'SupprimerUtilisateur': {
 		//include_once ('controleurs/CtrlSupprimerUtilisateur.php'); break;
