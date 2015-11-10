@@ -39,12 +39,11 @@
 			</ul>
 			<input type="submit" name="CeerUtilisateur" id="CeerUtilisateur" value="Créer utilisateur">
 			</form>
-					
 
 			
-			</div>
-			<div data-role="footer" data-position="fixed" data-theme="b">
-				<h4>Menu</h4>
+			
+			<div data-role="footer" data-position="fixed" data-theme="<?php echo $themeFooter; ?>">
+				<h4><?php echo $msgFooter; ?></h4>
 			</div>
 		
 	</body>
