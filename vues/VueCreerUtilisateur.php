@@ -15,7 +15,7 @@
 				<a href="index.php?action=Menu">Retour au menu</a>
 			</div>
 			<div data-role="content">
-				<h4 style="text-align: center; margin-top: 10px; margin-bottom: 10px;">Creer un compte utilisateur</h4>
+				<h4 style="text-align: center; margin-top: 10px; margin-bottom: 10px;">Créer un compte utilisateur</h4>
 				<form name="form1" id="form1" action="index.php?action=CreerUtilisateur" method="post">
 			<label for="nom">Utilisateur :</label>
 			<input type="text" name="nom" id="nom" placeholder="Entrez un nom d'utilisateur" value="" >
@@ -36,17 +36,10 @@
 		    	</tr>
 	    	</table>
 			</ul>
-			<input type="submit" name="CeerUtilisateur" id="CeerUtilisateur" value="Créer utilisateur">
-			
+			<input type="submit" name="CeerUtilisateur" id="CeerUtilisateur" value="Créer l'utilisateur">
 			</form>
-				
-				<?php if($debug == true) {
-					// en mise au point, on peut afficher certaines variables dans la page
-					echo "<p>SESSION['nom'] = " . $_SESSION['nom'] . "</p>";
-					echo "<p>SESSION['mdp'] = " . $_SESSION['mdp'] . "</p>";
-					echo "<p>SESSION['niveauUtilisateur'] = " . $_SESSION['niveauUtilisateur'] . "</p>";
-				} ?>
-			</div>
+
+
 			<div data-role="footer" data-position="fixed" data-theme="<?php echo $themeFooter; ?>">
 				<h4><?php echo $msgFooter; ?></h4>
 			</div>
