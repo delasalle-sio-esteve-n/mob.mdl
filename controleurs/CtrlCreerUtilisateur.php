@@ -24,24 +24,11 @@ else
 	}
 	else 
 	{
-		
-			if ( $choix != "0" && $choix != "1" && $choix != "2" )
-			{	
-				$msgFooter = 'Données incomplètes !';
-				$themeFooter = $themeProbleme;
-				include_once ('vues/VueCreerUtilisateur.php');
-			}
-			else
-			{
 				// connexion du serveur web à la base MySQL ("include_once" peut être remplacé par "require_once")
 				include_once ('../modele/DAO.class.php');
 				$dao = new DAO();
-		
-				if ( $dao->getNiveauUtilisateur($nomAdmin, $mdpAdmin) != "administrateur" )
-					TraitementAnormal("Erreur : authentification incorrecte.");
-				else
-				{
-					if ( $dao->existeUtilisateur($name) )
+
+					if ( $dao->existeUtilisateur($nom) )
 						
 					{	
 						$msgFooter = 'Nom d\'utilisateur déjà existant !';
@@ -50,9 +37,9 @@ else
 					}
 					else
 					{	// création d'un mot de passe aléatoire de 8 caractères
-						$password = Outils::creerMdp();
+						$mdp = Outils::creerMdp();
 						// enregistre l'utilisateur dans la bdd
-						$ok = $dao->enregistrerUtilisateur($name, $level, $password, $email);
+						$ok = $dao->enregistrerUtilisateur($nom, $choix, $mdp, $email);
 						if ( ! $ok )
 							TraitementAnormal("Erreur : problème lors de l'enregistrement du nouveau utilisateur.");
 						else
