@@ -3,17 +3,18 @@
 // Fonction du contrôleur CtrlChangerDeMdp.php : traiter la demande d'envoi d'un nouveau mot de passe
 // Ecrit le 3/11/2015 par MrJ
 
-if ( ! isset ($_POST ["mdp"]) == true || ! isset ($_POST ["nom"]) == true||! isset ($_POST ["choix"]) == true) {
+if ( ! isset ($_POST ["mdp"]) == true && ! isset ($_POST ["nom"]) == true && ! isset ($_POST ["choix"]) == true) {
 	// si les données n'ont pas été postées, c'est le premier appel du formulaire : affichage de la vue sans message d'erreur
 	$msgFooter = 'Créer un utilisateur';
 	$themeFooter = $themeNormal;
 	include_once ('vues/VueCreerUtilisateur.php');
 }
-else {
+else 
+{
 	// récupération des données postées
 	if ( empty ($_POST ["mdp"]) == true)  $mdp = "";  else   $mdp = $_POST ["mdp"];
 	if ( empty ($_POST ["nom"]) == true)  $nom = "";  else   $nom = $_POST ["nom"];
-	if ( empty ($_POST ["choix"]) == true)  $nom = "";  else   $nom = $_POST ["choix"];
+	if ( empty ($_POST ["choix"]) == true)  $nom = "";  else   $choix = $_POST ["choix"];
 	
 	if ($mdp == '' || $nom  == "") {
 		// si les données sont incomplètes, réaffichage de la vue avec un message explicatif
@@ -25,7 +26,10 @@ else {
 	{
 		
 			if ( $choix != "0" && $choix != "1" && $choix != "2" )
-			{	TraitementAnormal ("Erreur : le niveau doit être 0, 1 ou 2.");
+			{	
+				$msgFooter = 'Données incomplètes !';
+				$themeFooter = $themeProbleme;
+				include_once ('vues/VueCreerUtilisateur.php');
 			}
 			else
 			{
@@ -38,7 +42,11 @@ else {
 				else
 				{
 					if ( $dao->existeUtilisateur($name) )
-					{	TraitementAnormal("Erreur : nom d'utilisateur déjà existant.");
+						
+					{	
+						$msgFooter = 'Nom d\'utilisateur déjà existant !';
+						$themeFooter = $themeProbleme;
+						include_once ('vues/VueCreerUtilisateur.php');						
 					}
 					else
 					{	// création d'un mot de passe aléatoire de 8 caractères
