@@ -3,18 +3,19 @@
 // Fonction du contrôleur CtrlChangerDeMdp.php : traiter la demande d'envoi d'un nouveau mot de passe
 // Ecrit le 3/11/2015 par MrJ
 
-if ( ! isset ($_POST ["nouveauMdp"]) == true || ! isset ($_POST ["confirmationMdp"]) == true) {
+if ( ! isset ($_POST ["mdp"]) == true || ! isset ($_POST ["nom"]) == true||! isset ($_POST ["choix"]) == true) {
 	// si les données n'ont pas été postées, c'est le premier appel du formulaire : affichage de la vue sans message d'erreur
-	$msgFooter = 'Changer mon mot de passe';
+	$msgFooter = 'Créer un utilisateur';
 	$themeFooter = $themeNormal;
 	include_once ('vues/VueCreerUtilisateur.php');
 }
 else {
 	// récupération des données postées
-	if ( empty ($_POST ["nouveauMdp"]) == true)  $nouveauMdp = "";  else   $nouveauMdp = $_POST ["nouveauMdp"];
-	if ( empty ($_POST ["confirmationMdp"]) == true)  $confirmationMdp = "";  else   $confirmationMdp = $_POST ["confirmationMdp"];
+	if ( empty ($_POST ["mdp"]) == true)  $mdp = "";  else   $mdp = $_POST ["mdp"];
+	if ( empty ($_POST ["nom"]) == true)  $nom = "";  else   $nom = $_POST ["nom"];
+	if ( empty ($_POST ["choix"]) == true)  $nom = "";  else   $nom = $_POST ["choix"];
 	
-	if ($nouveauMdp == '' || $confirmationMdp == "") {
+	if ($mdp == '' || $nom  == "") {
 		// si les données sont incomplètes, réaffichage de la vue avec un message explicatif
 		$msgFooter = 'Données incomplètes !';
 		$themeFooter = $themeProbleme;
@@ -23,17 +24,54 @@ else {
 	else 
 	{
 		
-		// test des deux mot de passes
-		// si le $nouvMdp est égale à $confirmationMdp, sinon message d'erreur
-		if ( $nouveauMdp != $confirmationMdp )  
-		{
-			// si les mots de passe sont différents
-			$msgFooter = "Le nouveau mot de passe et<br>sa confirmation sont différents !";
-			$themeFooter = $themeProbleme;
-			include_once ('vues/VueCreerUtilisateur.php');
-		}
-		else 
-		{
+			if ( $choix != "0" && $choix != "1" && $choix != "2" )
+			{	TraitementAnormal ("Erreur : le niveau doit être 0, 1 ou 2.");
+			}
+			else
+			{
+				// connexion du serveur web à la base MySQL ("include_once" peut être remplacé par "require_once")
+				include_once ('../modele/DAO.class.php');
+				$dao = new DAO();
+		
+				if ( $dao->getNiveauUtilisateur($nomAdmin, $mdpAdmin) != "administrateur" )
+					TraitementAnormal("Erreur : authentification incorrecte.");
+				else
+				{
+					if ( $dao->existeUtilisateur($name) )
+					{	TraitementAnormal("Erreur : nom d'utilisateur déjà existant.");
+					}
+					else
+					{	// création d'un mot de passe aléatoire de 8 caractères
+						$password = Outils::creerMdp();
+						// enregistre l'utilisateur dans la bdd
+						$ok = $dao->enregistrerUtilisateur($name, $level, $password, $email);
+						if ( ! $ok )
+							TraitementAnormal("Erreur : problème lors de l'enregistrement du nouveau utilisateur.");
+						else
+							TraitementNormal();
+					}
+				}
+				// ferme la connexion à MySQL :
+				unset($dao);
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			// connexion du serveur web à la base MySQL
 			include_once ('modele/DAO.class.php');
 			$dao = new DAO();
