@@ -1,7 +1,7 @@
 <?php
 	// Projet Réservations M2L - version web mobile
-	// Fonction de la vue VueAnnulerReservation.php : visualiser la vue de l'annulation de la réservation
-	// Ecrit le 03/11/2015 par MrJ
+	// Fonction de la vue VueCreerUtilisateur.php : visualisation de la création d'utilisateur
+	// Ecrit le 10/11/2015 par Esteve
 ?>
 <!doctype html>
 <html>
@@ -24,22 +24,20 @@
 			<table>
 				<tr>
 					<td>Invité</td>
-					<td><input type="radio" name="choix" value="0"></td>
-					
+					<td><input type="radio" name="choix" value="0"></td>					
 				</tr>
 				<tr>
 					<td>Utilisateur</td>
-			    	<td><input type="radio" name="choix" value="1"></td>
-			    	
+			    	<td><input type="radio" name="choix" value="1"></td>			    	
 		    	</tr>
 		    	<tr>
 		    		<td>Administrateur</td>
-			    	<td><input type="radio" name="choix" value="2"></td>
-			    	
+			    	<td><input type="radio" name="choix" value="2"></td>			    	
 		    	</tr>
 	    	</table>
 			</ul>
 			<input type="submit" name="CeerUtilisateur" id="CeerUtilisateur" value="Créer utilisateur">
+			
 			</form>
 				
 				<?php if($debug == true) {
