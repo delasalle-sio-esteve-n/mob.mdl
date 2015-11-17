@@ -16,7 +16,25 @@
 			</div>
 			<div data-role="content">
 				<h4 style="text-align: center; margin-top: 10px; margin-bottom: 10px;">Consulter mes réservations</h4>
-				
+				<ul data-role="listview" data-inset="true" data-theme="c">
+				<?php foreach ($lesReservations as $Reservation)
+				{
+					include_once ('modele/Outils.class.php');
+					?>
+					<li><h4>Réserv.<?php echo $Reservation->getId();?>
+					Digicode <?php echo $Reservation->getDigicode();?></h4>
+					<br>
+					Passée le <?php echo Outils::convertirEnDateFR(substr($Reservation->getTimestamp(), 0,10));?>
+					<br>
+					Début : <?php echo Outils::corrigerDate(date('d-m-Y',$Reservation->getStart_time()));?>
+					<br>
+					Fin : <?php echo Outils::corrigerDate(date('d-m-Y',$Reservation->getEnd_time()));?>
+					</li>
+					<?php 	
+				}
+					
+				?>
+				</ul>
 				
 				<?php if($debug == true) {
 					// en mise au point, on peut afficher certaines variables dans la page
