@@ -52,9 +52,10 @@ else
 			{
 				$uneReservation = new Reservation();
 				$uneReservation = $dao->getReservation($numReservation);
+				$status = $uneReservation->getStatus();
 				//test de l'état de la réservation
 				//la méthode getReservation de la classe DAO retourne la réservation à partir de son numéro
-				if ( $uneReservation->getStatus() == 0 )
+				if ( $status == 0 )
 				{
 					$msgFooter = "Cette réservation est déjà confirmée !";
 					$themeFooter = $themeProbleme;
