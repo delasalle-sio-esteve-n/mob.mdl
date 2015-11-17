@@ -157,7 +157,7 @@ class Outils
 		}
 	}
 	
-	// La fonction dateUS convertit une date française (j/m/a) au format US (a-m-j)
+	// La fonction dateUSA convertit une date française (j/m/a) au format US (a-m-j)
 	// par exemple, le paramètre '16/05/2007' donnera '2007-05-16'
 	public static function convertirEnDateUS ($laDate)
 	{	$tableau = explode ("/", $laDate);		// on extrait les segments de la chaine $laDate séparés par des "/"
