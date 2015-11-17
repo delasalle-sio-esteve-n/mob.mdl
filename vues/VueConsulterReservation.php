@@ -21,14 +21,26 @@
 				{
 					include_once ('modele/Outils.class.php');
 					?>
-					<li><h4>Réserv.<?php echo $Reservation->getId();?>
-					Digicode <?php echo $Reservation->getDigicode();?></h4>
+					<li>
+					<h4>
+					Réserv.<?php echo $Reservation->getId();?>
+					<br>
+					Digicode <?php echo $Reservation->getDigicode();?>
+					</h4>
 					<br>
 					Passée le <?php echo Outils::convertirEnDateFR(substr($Reservation->getTimestamp(), 0,10));?>
 					<br>
 					Début : <?php echo Outils::corrigerDate(date('d-m-Y',$Reservation->getStart_time()));?>
 					<br>
 					Fin : <?php echo Outils::corrigerDate(date('d-m-Y',$Reservation->getEnd_time()));?>
+					<br>
+					Salle : <?php echo $Reservation->getRoom_name();?>
+					<br>
+					Etat : 
+					<?php 
+						if($Reservation->getStatus() == 0) echo 'confirmée';
+						if($Reservation->getStatus() == 4)echo 'provisoire';
+						if($Reservation->getStatus() =='')echo 'inconnu';?>
 					</li>
 					<?php 	
 				}
