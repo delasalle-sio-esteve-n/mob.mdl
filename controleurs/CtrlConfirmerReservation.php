@@ -91,7 +91,7 @@ else
 							
 							$msgFooter = 'Enregistrement effectué.<br>L\'envoi du mail de confirmation a rencontré un problème. ';
 							$themeFooter = $themeNormal;
-							include_once ('vues/VueConfirmerReservation.php.php');
+							include_once ('vues/VueConfirmerReservation.php');
 						}
 						else 
 						{
