@@ -50,6 +50,7 @@ else
 			}
 			else
 			{
+				$dao->creerLesDigicodesManquants();
 				$uneReservation = new Reservation();
 				$uneReservation = $dao->getReservation($numReservation);
 				$status = $uneReservation->getStatus();
