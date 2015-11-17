@@ -59,7 +59,7 @@ else
 				{
 					$msgFooter = "Cette réservation est déjà confirmée !";
 					$themeFooter = $themeProbleme;
-					include_once ('vues/VueConfirmerReservation.php');
+					include_once ('vues/VueConfirmerReservation.phpReservation.php');
 				}
 				else
 				{
