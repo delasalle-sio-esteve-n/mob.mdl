@@ -1,9 +1,9 @@
 <?php
 // Projet Réservations M2L - version web mobile
-// Fonction du contrôleur CtrlChangerDeMdp.php : traiter la demande d'envoi d'un nouveau mot de passe
+// Fonction du contrôleur CtrlChangerDemail.php : traiter la demande d'envoi d'un nouveau mot de passe
 // Ecrit le 3/11/2015 par MrJ
 
-if ( ! isset ($_POST ["mdp"]) == true && ! isset ($_POST ["nom"]) == true && ! isset ($_POST ["choix"]) == true) {
+if ( ! isset ($_POST ["mail"]) == true && ! isset ($_POST ["nom"]) == true && ! isset ($_POST ["choix"]) == true) {
 	// si les données n'ont pas été postées, c'est le premier appel du formulaire : affichage de la vue sans message d'erreur
 	$msgFooter = 'Créer un utilisateur';
 	$themeFooter = $themeNormal;
@@ -12,11 +12,11 @@ if ( ! isset ($_POST ["mdp"]) == true && ! isset ($_POST ["nom"]) == true && ! i
 else 
 {
 	// récupération des données postées
-	if ( empty ($_POST ["mdp"]) == true)  $mdp = "";  else   $mdp = $_POST ["mdp"];
+	if ( empty ($_POST ["mail"]) == true)  $mail = "";  else   $mail = $_POST ["mail"];
 	if ( empty ($_POST ["nom"]) == true)  $nom = "";  else   $nom = $_POST ["nom"];
 	if ( empty ($_POST ["choix"]) == true)  $nom = "";  else   $choix = $_POST ["choix"];
 	
-	if ($mdp == '' || $nom  == "") {
+	if ($mail == '' || $nom  == "") {
 		// si les données sont incomplètes, réaffichage de la vue avec un message explicatif
 		$msgFooter = 'Données incomplètes !';
 		$themeFooter = $themeProbleme;
@@ -24,24 +24,12 @@ else
 	}
 	else 
 	{
-		
-			if ( $choix != "0" && $choix != "1" && $choix != "2" )
-			{	
-				$msgFooter = 'Données incomplètes !';
-				$themeFooter = $themeProbleme;
-				include_once ('vues/VueCreerUtilisateur.php');
-			}
-			else
-			{
 				// connexion du serveur web à la base MySQL ("include_once" peut être remplacé par "require_once")
 				include_once ('../modele/DAO.class.php');
+				include_once ('../modele/Outils.class.php');
 				$dao = new DAO();
-		
-				if ( $dao->getNiveauUtilisateur($nomAdmin, $mdpAdmin) != "administrateur" )
-					TraitementAnormal("Erreur : authentification incorrecte.");
-				else
-				{
-					if ( $dao->existeUtilisateur($name) )
+
+					if ( $dao->existeUtilisateur($nom) )
 						
 					{	
 						$msgFooter = 'Nom d\'utilisateur déjà existant !';
@@ -50,9 +38,10 @@ else
 					}
 					else
 					{	// création d'un mot de passe aléatoire de 8 caractères
-						$password = Outils::creerMdp();
+					
+						$mdp = Outils::creermdp();
 						// enregistre l'utilisateur dans la bdd
-						$ok = $dao->enregistrerUtilisateur($name, $level, $password, $email);
+						$ok = $dao->enregistrerUtilisateur($nom, $choix, $mdp, $email);
 						if ( ! $ok )
 							TraitementAnormal("Erreur : problème lors de l'enregistrement du nouveau utilisateur.");
 						else
@@ -62,32 +51,15 @@ else
 				// ferme la connexion à MySQL :
 				unset($dao);
 				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+
 			// connexion du serveur web à la base MySQL
 			include_once ('modele/DAO.class.php');
 			$dao = new DAO();
 			// enregistre le nouveau mot de passe de l'utilisateur dans la bdd après l'avoir codé en MD5
-			$dao->modifierMdpUser ($nom, $nouveauMdp);
+			$dao->modifierMdpUser($nomUser, $nouveauMdp);
 	
 			// envoie un mail à l'utilisateur avec son nouveau mot de passe 
-			$ok = $dao->envoyerMdp ($_SESSION['nom'], $nouveauMdp);
+			$ok = $dao->envoyermail ($_SESSION['nom'], $nouveauMdp);
 			if($ok)
 					{
 						
@@ -104,5 +76,5 @@ else
 					unset($dao);		// fermeture de la connexion à MySQL
 		}
 		
-	}
-}
+	
+

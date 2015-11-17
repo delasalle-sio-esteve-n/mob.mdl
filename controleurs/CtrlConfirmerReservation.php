@@ -19,7 +19,7 @@ else
 		// si les données sont incomplètes, réaffichage de la vue avec un message explicatif
 		$msgFooter = 'Données incomplètes !';
 		$themeFooter = $themeProbleme;
-		include_once ('vues/VueConfirmerReservation.phpReservation.php');
+		include_once ('vues/VueConfirmerReservation.php');
 	}
 	else 
 	{
@@ -34,25 +34,28 @@ else
 			// si le num n'existe pas, retour à la vue
 			$msgFooter = "Numéro de réservation inexistant!";
 			$themeFooter = $themeProbleme;
-			include_once ('vues/VueConfirmerReservation.phpReservation.php');
+			include_once ('vues/VueConfirmerReservation.php');
 		}
 		
 		else 
 		{
 			//test de l'auteur de la réservation
-			//la méthode estLeCretaeur de la classe DAO retourne true si $_SESSION['nom'] est l'auteur, false s'il n'existe pas
+			//la méthode estLeCreteur de la classe DAO retourne true si $_SESSION['nom'] est l'auteur, false s'il n'existe pas
 			if ( ! $dao->estLeCreateur($_SESSION['nom'],$numReservation) )  
 			{
 				//si l'utilisateur n'est pas l'auteur retour à la vue
 				$msgFooter = "Vous n'êtes pas l'auteur de cette réservation !";
 				$themeFooter = $themeProbleme;
-				include_once ('vues/VueConfirmerReservation.phpReservation.php');
+				include_once ('vues/VueConfirmerReservation.php');
 			}
 			else
 			{
+				$uneReservation = new Reservation();
+				$uneReservation = $dao->getReservation($numReservation);
+				$status = $uneReservation->getStatus();
 				//test de l'état de la réservation
 				//la méthode getReservation de la classe DAO retourne la réservation à partir de son numéro
-				if ( $dao->getReservation($numReservation)->getStatus() == 0 )
+				if ( $status == 0 )
 				{
 					$msgFooter = "Cette réservation est déjà confirmée !";
 					$themeFooter = $themeProbleme;
@@ -60,36 +63,45 @@ else
 				}
 				else
 				{
-					// redéclaration des données globales utilisées dans la fonction
-					
-					global $dao, $numReservation;
-					global $ADR_MAIL_EMETTEUR;
-					
-					// supprime la réservation dans la base de données
-					$dao->confirmerReservation($numReservation);
-					
-					// recherche de l'adresse mail
-					$adrMail = $dao->getUtilisateur($_SESSION['nom'])->getEmail();
-					
-					// envoie un mail de confirmation de l'enregistrement
-					$sujet = "Confirmation de réservation";
-					$message = "Nous avons bien enregistré la suppression de la réservation N° " . $numReservation ;
-					$ok = Outils::envoyerMail ($adrMail, $sujet, $message, $ADR_MAIL_EMETTEUR);
-					if($ok)
+					if($uneReservation->getStart_time() < time())
 					{
-						
-						$msgFooter = 'Enregistrement effectué.<br>L\'envoi du mail de confirmation a rencontré un problème. ';
-						$themeFooter = $themeNormal;
-						include_once ('vues/VueConfirmerReservation.php.php');
-					}
-					else 
-					{
+						$msgFooter = "Cette réservation est déjà passée !";
 						$themeFooter = $themeProbleme;
-						$msgFooter = "Enregistrement effectué.<br>Vous allez recevoir un mail de confirmation.";
-						include_once ('vues/VueConfirmerReservation.php.php');
+						include_once ('vues/VueConfirmerReservation.php');
+					}				
+					else
+					{
+						// redéclaration des données globales utilisées dans la fonction
+						
+						global $dao, $numReservation;
+						global $ADR_MAIL_EMETTEUR;
+						
+						// supprime la réservation dans la base de données
+						$dao->confirmerReservation($numReservation);
+						
+						// recherche de l'adresse mail
+						$adrMail = $dao->getUtilisateur($_SESSION['nom'])->getEmail();
+						
+						// envoie un mail de confirmation de l'enregistrement
+						$sujet = "Confirmation de réservation";
+						$message = "Nous avons bien enregistré la suppression de la réservation N° " . $numReservation ;
+						$ok = Outils::envoyerMail ($adrMail, $sujet, $message, $ADR_MAIL_EMETTEUR);
+						if($ok)
+						{
+							
+							$msgFooter = 'Enregistrement effectué.<br>L\'envoi du mail de confirmation a rencontré un problème. ';
+							$themeFooter = $themeNormal;
+							include_once ('vues/VueConfirmerReservation.php.php');
+						}
+						else 
+						{
+							$themeFooter = $themeProbleme;
+							$msgFooter = "Enregistrement effectué.<br>Vous allez recevoir un mail de confirmation.";
+							include_once ('vues/VueConfirmerReservation.php.php');
+						}
 					}
-				}
 					
+				}
 			}
  		}
 	}
