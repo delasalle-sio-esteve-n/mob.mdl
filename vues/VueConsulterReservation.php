@@ -15,17 +15,8 @@
 				<a href="index.php?action=Menu">Retour au menu</a>
 			</div>
 			<div data-role="content">
-				<h4 style="text-align: center; margin-top: 10px; margin-bottom: 10px;">Annuler une réservation</h4>
-				<form name="form1" id="form1" action="index.php?action=ConsulterReservation" method="post">
-					<div data-role="fieldcontain" class="ui-hide-label">
-						<label for="num">Utilisateur :</label>
-						<input type="text" name="numReservation" id="numReservation" placeholder="Entrez le numéro de réservation" value="<?php  ?>" >
-					</div>
-
-					<div data-role="fieldcontain">
-						<input type="submit" name="annulerReservation" id="annulerReservation" value="Annuler la réservation">
-					</div>
-				</form>
+				<h4 style="text-align: center; margin-top: 10px; margin-bottom: 10px;">Consulter mes réservations</h4>
+				
 				
 				<?php if($debug == true) {
 					// en mise au point, on peut afficher certaines variables dans la page
