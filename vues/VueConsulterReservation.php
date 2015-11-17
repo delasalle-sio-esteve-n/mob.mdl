@@ -1,7 +1,7 @@
 <?php
 	// Projet Réservations M2L - version web mobile
-	// Fonction de la vue VueAnnulerReservation.php : visualiser la vue de l'annulation de la réservation
-	// Ecrit le 03/11/2015 par MrJ
+	// Fonction de la vue VueConsulterReservation.php : visualiser la vue de consultation des réservations
+	// Ecrit le 17/11/2015 par MrJ
 ?>
 <!doctype html>
 <html>
@@ -17,8 +17,10 @@
 			<div data-role="content">
 				<h4 style="text-align: center; margin-top: 10px; margin-bottom: 10px;">Consulter mes réservations</h4>
 				<ul data-role="listview" data-inset="true" data-theme="c">
+				<!-- Pour chaque réservation de la collection lesRéservations faire -->
 				<?php foreach ($lesReservations as $Reservation)
 				{
+// 					Appel de Outils.php
 					include_once ('modele/Outils.class.php');
 					?>
 					<li>
@@ -28,7 +30,7 @@
 					Digicode <?php echo $Reservation->getDigicode();?>
 					</h4>
 					<br>
-					Passée le <?php echo Outils::convertirEnDateFR(substr($Reservation->getTimestamp(), 0,10));?>
+					Passée le <?php echo Outils::convertirEnDateFR(substr($Reservation->getTimestamp(),0,10));?>
 					<br>
 					Début : <?php echo Outils::corrigerDate(date('d-m-Y',$Reservation->getStart_time()));?>
 					<br>
