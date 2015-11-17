@@ -1,7 +1,7 @@
 <?php
 	// Projet Réservations M2L - version web mobile
 	// Fonction de la vue VueCreerUtilisateur.php : visualisation de la création d'utilisateur
-	// Ecrit le 10/11/2015 par Esteve
+	// Ecrit le 17/11/2015 par Esteve
 ?>
 <!doctype html>
 <html>
