@@ -50,6 +50,7 @@ else
 			}
 			else
 			{
+				$dao->creerLesDigicodesManquants();
 				$uneReservation = new Reservation();
 				$uneReservation = $dao->getReservation($numReservation);
 				$status = $uneReservation->getStatus();
@@ -59,7 +60,7 @@ else
 				{
 					$msgFooter = "Cette réservation est déjà confirmée !";
 					$themeFooter = $themeProbleme;
-					include_once ('vues/VueConfirmerReservation.phpReservation.php');
+					include_once ('vues/VueConfirmerReservation.php');
 				}
 				else
 				{
@@ -91,13 +92,13 @@ else
 							
 							$msgFooter = 'Enregistrement effectué.<br>L\'envoi du mail de confirmation a rencontré un problème. ';
 							$themeFooter = $themeNormal;
-							include_once ('vues/VueConfirmerReservation.php.php');
+							include_once ('vues/VueConfirmerReservation.php');
 						}
 						else 
 						{
 							$themeFooter = $themeProbleme;
 							$msgFooter = "Enregistrement effectué.<br>Vous allez recevoir un mail de confirmation.";
-							include_once ('vues/VueConfirmerReservation.php.php');
+							include_once ('vues/VueConfirmerReservation.php');
 						}
 					}
 					
