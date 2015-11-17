@@ -53,13 +53,11 @@ else
 				
 
 			// connexion du serveur web à la base MySQL
-			include_once ('modele/DAO.class.php');
-			$dao = new DAO();
-			// enregistre le nouveau mot de passe de l'utilisateur dans la bdd après l'avoir codé en MD5
-			$dao->modifierMdpUser($nomUser, $nouveauMdp);
-	
-			// envoie un mail à l'utilisateur avec son nouveau mot de passe 
-			$ok = $dao->envoyermail ($_SESSION['nom'], $nouveauMdp);
+				include_once ('../modele/Outils.class.php');
+			// envoie un mail à l'utilisateur avec son mot de passe 
+			$message = "Votre mot de passe d'accès au service Réservations M2L a été Crée.\n\n";
+			$message = $message.$Mdp;
+			$ok =Outils::envoyerMail($mail,'Mot de passe M2L', $message, 'delasalle.sio.esteve.n@gmail.com');
 			if($ok)
 					{
 						
@@ -70,7 +68,7 @@ else
 					else 
 					{
 						$themeFooter = $themeProbleme;
-						$msgFooter = "Enregistrement effectué.<br>Vous allez recevoir un mail de confirmation.";
+						$msgFooter = "Enregistrement effectué.<br>Vous allez recevoir un mail de confirmation contenant votre mot de passe.";
 						include_once ('vues/VueCreerUtilisateur.php');
 					}
 					unset($dao);		// fermeture de la connexion à MySQL
