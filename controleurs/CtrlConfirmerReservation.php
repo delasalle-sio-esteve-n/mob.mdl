@@ -59,7 +59,7 @@ else
 				{
 					$msgFooter = "Cette réservation est déjà confirmée !";
 					$themeFooter = $themeProbleme;
-					include_once ('vues/VueConfirmerReservation.phpReservation.php');
+					include_once ('vues/VueConfirmerReservation.php');
 				}
 				else
 				{
@@ -97,7 +97,7 @@ else
 						{
 							$themeFooter = $themeProbleme;
 							$msgFooter = "Enregistrement effectué.<br>Vous allez recevoir un mail de confirmation.";
-							include_once ('vues/VueConfirmerReservation.php.php');
+							include_once ('vues/VueConfirmerReservation.php');
 						}
 					}
 					
