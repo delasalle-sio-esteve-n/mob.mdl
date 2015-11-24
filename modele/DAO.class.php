@@ -117,8 +117,8 @@ class DAO
 			// on ajoute ce caractère au digicode
 			$digicode = $digicode . $unCaractere;
 		}
-		// fourniture de la réponse
-		return $digicode;
+		// fourniture de la réponse 
+				return $digicode;
 	}	
 
 	// mise à jour de la table mrbs_entry_digicode (si besoin) pour créer les digicodes manquants
