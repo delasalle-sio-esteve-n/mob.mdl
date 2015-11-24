@@ -45,14 +45,14 @@ else {
 			if($ok)
 					{
 						
-						$msgFooter = 'Enregistrement effectué.<br>L\'envoi du mail de confirmation a rencontré un problème. ';
+						$msgFooter = "Enregistrement effectué.<br>Vous allez recevoir un mail de confirmation.";
 						$themeFooter = $themeNormal;
 						include_once ('vues/VueChangerDeMdp.php');
 					}
 					else 
 					{
 						$themeFooter = $themeProbleme;
-						$msgFooter = "Enregistrement effectué.<br>Vous allez recevoir un mail de confirmation.";
+						$msgFooter = 'Enregistrement effectué.<br>L\'envoi du mail de confirmation a rencontré un problème. ';
 						include_once ('vues/VueChangerDeMdp.php');
 					}
 					unset($dao);		// fermeture de la connexion à MySQL

@@ -82,24 +82,25 @@ else
 						
 						// recherche de l'adresse mail
 						$adrMail = $dao->getUtilisateur($_SESSION['nom'])->getEmail();
-						
+					
 						// envoie un mail de confirmation de l'enregistrement
-						$sujet = "Confirmation de réservation";
+						$sujet = "Suppression de réservation";
 						$message = "Nous avons bien enregistré la suppression de la réservation N° " . $numReservation ;
 						$ok = Outils::envoyerMail ($adrMail, $sujet, $message, $ADR_MAIL_EMETTEUR);
 						if($ok)
 						{
-							
-							$msgFooter = 'Enregistrement effectué.<br>L\'envoi du mail de confirmation a rencontré un problème. ';
 							$themeFooter = $themeNormal;
-							include_once ('vues/VueConfirmerReservation.php');
+							$msgFooter = "Enregistrement effectué.<br>Vous allez recevoir un mail de confirmation.";
+							include_once ('vues/VueAnnulerReservation.php');
+						
 						}
 						else 
 						{
+							$msgFooter = 'Enregistrement effectué.<br>L\'envoi du mail de confirmation a rencontré un problème. ';
 							$themeFooter = $themeProbleme;
-							$msgFooter = "Enregistrement effectué.<br>Vous allez recevoir un mail de confirmation.";
-							include_once ('vues/VueConfirmerReservation.php');
-						}
+							include_once ('vues/VueAnnulerReservation.php');
+						
+					
 					}
 					
 				}
