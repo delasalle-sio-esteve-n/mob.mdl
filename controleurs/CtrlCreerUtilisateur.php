@@ -53,7 +53,7 @@ else
 						{
 						unset($dao);
 					// connexion du serveur web à la base MySQL
-						include_once ('../modele/Outils.class.php');
+						include_once ('/modele/Outils.class.php');
 					// envoie un mail à l'utilisateur avec son mot de passe 
 					$message = "Votre mot de passe d'accès au service Réservations M2L a été Crée.\n\n";
 					$message = $message.$Mdp;
@@ -62,12 +62,12 @@ else
 					{
 						
 						$msgFooter = 'Enregistrement effectué.<br>L\'envoi du mail de confirmation a rencontré un problème. ';
-						$themeFooter = $themeNormal;
+						$themeFooter = $themeProblème;
 						include_once ('vues/VueCreerUtilisateur.php');
 					}
 					else 
 					{
-						$themeFooter = $themeProbleme;
+						$themeFooter = $themeNormal;
 						$msgFooter = "Enregistrement effectué.<br>Vous allez recevoir un mail de confirmation contenant votre mot de passe.";
 						include_once ('vues/VueCreerUtilisateur.php');
 					}

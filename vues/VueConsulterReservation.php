@@ -20,7 +20,7 @@
 				<!-- Pour chaque réservation de la collection lesRéservations faire -->
 				<?php foreach ($lesReservations as $Reservation)
 				{
-// 					Appel de Outils.php
+					// 	Appel de Outils.php
 					include_once ('modele/Outils.class.php');
 					?>
 					<li>

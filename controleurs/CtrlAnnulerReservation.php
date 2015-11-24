@@ -26,7 +26,7 @@ else
 		// connexion du serveur web à la base MySQL
 		include_once ('modele/DAO.class.php');
 		$dao = new DAO();
-		
+		$dao->creerLesDigicodesManquants();
 		// test de l'existence de la réservation
 		// la méthode existeReservation de la classe DAO retourne true si $num existe, false s'il n'existe pas
 		if ( ! $dao->existeReservation($numReservation) )  
@@ -64,7 +64,7 @@ else
 					
 					global $dao, $numReservation;
 					global $ADR_MAIL_EMETTEUR;
-					
+					$ADR_MAIL_EMETTEUR='adresse@bidon.nf';
 					// supprime la réservation dans la base de données
 					$dao->annulerReservation($numReservation);
 					
@@ -77,16 +77,17 @@ else
 					$ok = Outils::envoyerMail ($adrMail, $sujet, $message, $ADR_MAIL_EMETTEUR);
 					if($ok)
 					{
-						
-						$msgFooter = 'Enregistrement effectué.<br>L\'envoi du mail de confirmation a rencontré un problème. ';
 						$themeFooter = $themeNormal;
+						$msgFooter = "Enregistrement effectué.<br>Vous allez recevoir un mail de confirmation.";
 						include_once ('vues/VueAnnulerReservation.php');
+						
 					}
 					else 
 					{
+						$msgFooter = 'Enregistrement effectué.<br>L\'envoi du mail de confirmation a rencontré un problème. ';
 						$themeFooter = $themeProbleme;
-						$msgFooter = "Enregistrement effectué.<br>Vous allez recevoir un mail de confirmation.";
 						include_once ('vues/VueAnnulerReservation.php');
+						
 					}
 				}
 					
