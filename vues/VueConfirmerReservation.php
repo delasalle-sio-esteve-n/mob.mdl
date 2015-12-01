@@ -19,7 +19,7 @@
 				<form name="form1" id="form1" action="index.php?action=ConfirmerReservation" method="post">
 					<div data-role="fieldcontain" class="ui-hide-label">
 						<label for="num">Utilisateur :</label>
-						<input type="text" name="numReservation" id="numReservation" placeholder="Entrez le numéro de réservation" value="<?php  ?>" >
+						<input type="text" name="numReservation" id="numReservation" placeholder="Entrez le numéro de réservation" value="<?php echo $numReservation ?>" >
 					</div>
 
 					<div data-role="fieldcontain">

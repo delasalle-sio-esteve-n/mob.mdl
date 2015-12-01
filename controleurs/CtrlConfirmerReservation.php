@@ -101,11 +101,11 @@ else
 							include_once ('vues/VueAnnulerReservation.php');
 						
 					
+						}
+						
 					}
-					
 				}
-			}
- 		}
-	}
-		unset($dao);		// fermeture de la connexion à MySQL
+	 		}
+		}
+	}		unset($dao);		// fermeture de la connexion à MySQL
 }
