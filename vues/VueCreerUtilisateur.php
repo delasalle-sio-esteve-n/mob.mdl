@@ -18,9 +18,9 @@
 				<h4 style="text-align: center; margin-top: 10px; margin-bottom: 10px;">Créer un compte utilisateur</h4>
 				<form name="form1" id="form1" action="index.php?action=CreerUtilisateur" method="post">
 			<label for="nom">Utilisateur :</label>
-			<input type="text" name="nom" id="nom" placeholder="Entrez un nom d'utilisateur" value="" >
+			<input type="text" name="nom" id="nom" placeholder="Entrez un nom d'utilisateur" value="<?php echo $nom;?>" >
 			<label for="mail">Adresse mail :</label>
-			<input type="text" name="mail" id="mail" placeholder="Entrez une adresse mail" value="" >
+			<input type="text" name="mail" id="mail" placeholder="Entrez une adresse mail" value="<?php echo $mail;?>" >
 			<table>
 				<tr>
 					<td>Invité</td>

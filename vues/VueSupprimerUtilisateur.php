@@ -19,7 +19,7 @@
 				<form name="form1" id="form1" action="index.php?action=SupprimerUtilisateur" method="post">
 					<div data-role="fieldcontain" class="ui-hide-label">
 						<label for="Supprimer un compte utilisateur">Supprimer un compte utilisateur</label>
-						<input type="text" name="nom" id="nom" placeholder="Entrez le nom de l'utilisateur" value="<?php  ?>" >						
+						<input type="text" name="nom" id="nom" placeholder="Entrez le nom de l'utilisateur" value="<?php  echo $nom;?>" >						
 					</div>
 
 					<div data-role="fieldcontain">
