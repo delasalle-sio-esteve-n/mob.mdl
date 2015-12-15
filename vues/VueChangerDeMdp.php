@@ -19,8 +19,8 @@
 				<form name="form1" id="form1" action="index.php?action=ChangerDeMdp" method="post">
 					<div data-role="fieldcontain" class="ui-hide-label">
 						<label for="Changer mon mot de passe">Changer mon mot de passe</label>
-						<input type="text" name="nouveauMdp" id="nouveauMdp" placeholder="Entrez votre nouveau mot de passe" value="<?php  ?>" >
-						<input type="text" name="confirmationMdp" id="confirmationMdp" placeholder="Confirmez votre nouveau mot de passe" value="<?php  ?>" >
+						<input type="text" name="nouveauMdp" id="nouveauMdp" placeholder="Entrez votre nouveau mot de passe" value="<?php echo $nouveauMdp ?>" >
+						<input type="text" name="confirmationMdp" id="confirmationMdp" placeholder="Confirmez votre nouveau mot de passe" value="<?php  echo $confirmationMdp ?>" >
 					</div>
 
 					<div data-role="fieldcontain">
